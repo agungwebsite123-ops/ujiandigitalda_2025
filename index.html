@@ -12,7 +12,9 @@
   <meta name="format-detection" content="telephone=no"><!-- Android Chrome Meta Tags -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="Portal Ujian"><!-- PWA Manifest -->
-  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUG9ydGFsIFVqaWFuIFNpc3dhIC0gRGFhcnVsIEFtaWluIElCUyIsInNob3J0X25hbWUiOiJQb3J0YWwgVWppYW4iLCJzdGFydF91cmwiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmZmZmZmYiLCJ0aGVtZV9jb2xvciI6IiMyNTYzZWIiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRJNElpQm9aV2xuYUhROUlqRXlPQ0lpSUhacFpYZENiM2c5SWpBZ01DQXhNamdnTVRJNElpQm1hV3hzUFNJaU1qVTJNMlZpSWlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpUGp4eVpXTjBJSGRwWkhSb1BTSXhNamdpSUdobGFXZG9kRDBpTVRJNElpQm1hV3hzUFNJaU1qVTJNMlZpSWk4K1BIUmxlSFFnZUQwaU5qUWlJSGs5SWpZMElpQm1hV3hzUFNJaVptWm1abVptSWlCbWIyNTBMWE5wZW1VOUlqUTRJaUJtYjI1MExYZGxhV2RvZEQwaVltOXNaQ0krOEorUXV6d3ZkR1Y0ZEQ0OEwzTjJaejQ9Iiwic2l6ZXMiOiIxMjh4MTI4IiwidHlwZSI6ImltYWdlL3N2Zyt4bWwifV19">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUG9ydGFsIFVqaWFuIFNpc3dhIC0gRGFhcnVsIEFtaWluIElCUyIsInNob3J0X25hbWUiOiJQb3J0YWwgVWppYW4iLCJkZXNjcmlwdGlvbiI6IlBvcnRhbCB1amlhbiBvbmxpbmUgdW50dWsgc2lzd2EgU01QIGRhbiBTTUEgRGFhcnVsIEFtaWluIElCUyIsInN0YXJ0X3VybCI6Ii4vIiwiaWQiOiJwb3J0YWwtdWppYW4tZGFhcnVsLWFtaWluIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJvcmllbnRhdGlvbiI6InBvcnRyYWl0IiwiYmFja2dyb3VuZF9jb2xvciI6IiNmZmZmZmYiLCJ0aGVtZV9jb2xvciI6IiMyNTYzZWIiLCJjYXRlZ29yaWVzIjpbImVkdWNhdGlvbiIsInByb2R1Y3Rpdml0eSJdLCJsYW5nIjoiaWQiLCJzY29wZSI6Ii4vIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU1USTRJaUJvWldsbmFIUTlJakV5T0NJaVlYaHBjejBpTUNBd0lERXlPQ0F4TWpnaUlIWnBaWGRDYjNnOUlqQWdNQ0F4TWpnZ01USTRJaUJtYVd4c1BTSWlNalUyTTJWaUlpQjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaVBqeHlaV04wSUhkcFpIUm9QU0l4TWpnaUlHaGxhV2RvZEQwaU1USTRJaUJtYVd4c1BTSWlNalUyTTJWaUlpOCtQSFJsZUhRZ2VEMGlOalFpSUhrOUlqWTBJaUJtYVd4c1BTSWlabVptWm1abUlpQm1iMjUwTFhOcGVtVTlJalE0SWlCbWIyNTBMWGRsYVdkb2REMGlZbTlzWkNJK09EK1F1end2ZEdWNGRENDhMM04yWno0PSIsInNpemVzIjoiMTI4eDEyOCIsInR5cGUiOiJpbWFnZS9zdmcreG1sIn0seyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlOVEV5SWlCb1pXbG5hSFE5SWpVeE1pSWlZWGhwY3owaU1DQXdJRFV4TWlBMU1USWlJSFpwWlhkQ2IzZzlJakFnTUNBMU1USWdOVEV5SWlCbWFXeHNQU0lpTWpVMk0yVmlJaUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lQanh5WldOMElIZHBaSFJvUFNJMU1USWlJR2hsYVdkb2REMGlOVEV5SWlCbWFXeHNQU0lpTWpVMk0yVmlJaTgrUEhSbGVIUWdlRDBpTVRJNElpQjVQU0l4TWpnaUlHWnBiR3c5SWlabVptWm1abVlpSUdadmJuUXRjMmw2WlQwaU9EQWlJR1p2Ym5RdGQyVnBaMmgwUFNJaVltOXNaQ0krT0QrUXV6d3ZkR1Y0ZEQ0OEwzTjJaejQ9Iiwic2l6ZXMiOiI1MTJ4NTEyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwifV0sInNjcmVlbnNob3RzIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlOekF3SWlCb1pXbG5hSFE5SWpFeU1EQWlJSFpwWlhkQ2IzZzlJakFnTUNBM01EQWdNVEl3TUNJaVptbHNiRDBpSXpBd01EQm1aaUlnZUcxc2JuTTlJbWgwZEhBNkx5OTNkM2N1ZHpNdWIzSm5Mekl3TURBdmMzWm5JajQ4Y21WamRDQjNhV1IwYUQwaU56QXdJaUJvWldsbmFIUTlJakV5TURBaUlHWnBiR3c5SWlNd01EQkdSaUl2UGp4MFpYaDBJSGc5SWpNMU1DSWdlVDBpTmpBd0lpQm1hV3hzUFNJaU1qVTJNMlZpSWlCbWIyNTBMWE5wZW1VOUlqTXdJaUJtYjI1MExYZGxhV2RvZEQwaVltOXNaQ0krVUc5eWRHRnNJRlZxYVdGdVBDOTBaWGgwUGp4MFpYaDBJSGc5SWpNMU1DSWdlVDBpTmpVd0lpQm1hV3hzUFNJaU5EWTBOalEySWlCbWIyNTBMWE5wZW1VOUlqSXdJaUJtYjI1MExYZGxhV2RvZEQwaWJtOXliV0ZzSWo1RVlXRnlkV3dnUVcxcGFXNGdTVUpUUEM5MFpYaDBQand2YzNabkBqND0iLCJzaXplcyI6IjcwMHgxMjAwIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwifV0sInNob3J0Y3V0cyI6W3sibmFtZSI6IkxvZ2luIFNpc3dhIiwidXJsIjoiLi8iLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRJNElpQm9aV2xuYUhROUlqRXlPQ0lpSUhacFpYZENiM2c5SWpBZ01DQXhNamdnTVRJNElpQm1hV3hzUFNJaU1qVTJNMlZpSWlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpUGp4eVpXTjBJSGRwWkhSb1BTSXhNamdpSUdobGFXZG9kRDBpTVRJNElpQm1hV3hzUFNJaU1qVTJNMlZpSWk4K1BIUmxlSFFnZUQwaU5qUWlJSGs5SWpZMElpQm1hV3hzUFNJaVptWm1abVptSWlCbWIyNTBMWE5wZW1VOUlqUTRJaUJtYjI1MExYZGxhV2RvZEQwaVltOXNaQ0krOEorUXV6d3ZkR1Y0ZEQ0OEwzTjJaejQ9Iiwic2l6ZXMiOiIxMjh4MTI4In1dfV0sInByZWZlcl9yZWxhdGVkX2FwcGxpY2F0aW9ucyI6ZmFsc2V9"><!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgdmlld0JveD0iMCAwIDEyOCAxMjgiIGZpbGw9IiMyNTYzZWIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSI2NCIgeT0iNjQiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtd2VpZ2h0PSJib2xkIj7wn5C7PC90ZXh0Pjwvc3ZnPg==">
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9IiMyNTYzZWIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSI5MCIgeT0iOTAiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iNjQiIGZvbnQtd2VpZ2h0PSJib2xkIj7wn5C7PC90ZXh0Pjwvc3ZnPg==">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
         body {
@@ -194,7 +196,7 @@
         <p class="text-xs md:text-sm text-gray-600" id="welcomeText">Selamat datang</p>
        </div>
       </div>
-      <div class="flex items-center space-x-2 md:space-x-4"><button id="logoutBtn" class="bg-red-500 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-red-600 active:bg-red-700 transition duration-200 text-xs md:text-base no-zoom"> Logout </button>
+      <div class="flex items-center space-x-2 md:space-x-4"><!-- Install App Button (PWA) --> <button id="installBtn" class="hidden bg-green-500 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-green-600 active:bg-green-700 transition duration-200 text-xs md:text-base no-zoom"> 📱 Install App </button> <button id="logoutBtn" class="bg-red-500 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-red-600 active:bg-red-700 transition duration-200 text-xs md:text-base no-zoom"> Logout </button>
       </div>
      </div>
     </div>
@@ -210,6 +212,14 @@
       <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 md:p-4 mt-4 mobile-spacing">
        <h4 class="text-blue-800 font-medium text-sm md:text-base mb-2">📅 Jadwal Ujian Hari Ini</h4>
        <div id="examSchedule" class="text-blue-700 text-xs md:text-sm mobile-text-sm"><!-- Schedule will be populated by JavaScript -->
+       </div>
+      </div><!-- Install App Notification -->
+      <div id="installNotification" class="hidden bg-blue-50 border border-blue-200 rounded-lg p-3 md:p-4 mt-4 mobile-spacing">
+       <h4 class="text-blue-800 font-medium text-sm md:text-base mb-2">📱 INSTALL APLIKASI</h4>
+       <div class="text-blue-700 text-xs md:text-sm mobile-text-sm">
+        <p class="mb-1 md:mb-2">✨ Portal Ujian bisa diinstall sebagai aplikasi!</p>
+        <p class="mb-1 md:mb-2">📲 Akses lebih cepat dari home screen Android</p>
+        <p class="mb-1 md:mb-2">🚀 Pengalaman seperti aplikasi native</p><button id="installNotificationBtn" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 active:bg-blue-800 transition duration-200 text-xs md:text-sm no-zoom"> 📱 Install Sekarang </button> <button id="dismissInstallBtn" class="mt-2 ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 active:bg-gray-500 transition duration-200 text-xs md:text-sm no-zoom"> Nanti Saja </button>
        </div>
       </div><!-- Simple Info -->
       <div class="bg-green-50 border border-green-200 rounded-lg p-3 md:p-4 mt-4 mobile-spacing">
@@ -256,6 +266,37 @@
      </div>
     </div>
    </div>
+  </div><!-- Install App Modal -->
+  <div id="installModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 mobile-padding">
+   <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 w-full max-w-md max-h-screen overflow-y-auto">
+    <div class="text-center">
+     <div class="bg-green-100 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4"><span class="text-green-600 text-xl md:text-2xl">📱</span>
+     </div>
+     <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4">Install Portal Ujian</h3>
+     <p class="text-gray-600 mb-4 md:mb-6 text-sm md:text-base">Install Portal Ujian sebagai aplikasi di Android Anda untuk akses yang lebih mudah dan cepat!</p>
+     <div class="bg-green-50 border border-green-200 rounded-lg p-3 md:p-4 mb-3 md:mb-4">
+      <p class="text-green-800 text-sm font-medium mb-2">✨ KEUNTUNGAN INSTALL APP:</p>
+      <ul class="text-green-700 text-xs space-y-1 text-left">
+       <li>🚀 Akses langsung dari home screen</li>
+       <li>⚡ Loading lebih cepat</li>
+       <li>📱 Tampilan seperti aplikasi native</li>
+       <li>🔒 Lebih aman dan stabil</li>
+       <li>💾 Hemat data dengan cache</li>
+      </ul>
+     </div>
+     <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 md:p-4 mb-4 md:mb-6">
+      <p class="text-blue-800 text-sm font-medium mb-2">📋 CARA INSTALL:</p>
+      <ul class="text-blue-700 text-xs space-y-1 text-left">
+       <li>1️⃣ Klik tombol "Install App" di bawah</li>
+       <li>2️⃣ Browser akan menampilkan popup install</li>
+       <li>3️⃣ Klik "Install" atau "Tambahkan"</li>
+       <li>4️⃣ Aplikasi akan muncul di home screen</li>
+      </ul>
+     </div>
+     <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4"><button id="cancelInstall" class="flex-1 bg-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-400 active:bg-gray-500 transition duration-200 no-zoom"> Nanti Saja </button> <button id="confirmInstall" class="flex-1 bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 active:bg-green-800 transition duration-200 no-zoom"> 📱 Install App </button>
+     </div>
+    </div>
+   </div>
   </div><!-- Fullscreen Exam Container -->
   <div id="examContainer" class="hidden"><!-- Timer Overlay -->
    <div id="timerOverlay" class="timer-overlay"><span id="timeLeft">90:00</span>
@@ -268,7 +309,7 @@
         const formUrlsByClass = {
             // SMP Classes
             'VII': {
-                'ipa': 'https://forms.gle/ipa-kelas7',
+                'ipa': 'https://forms.gle/r2LMdPsc7YLGhtYP7',
                 'ips': 'https://forms.gle/ips-kelas7',
                 'matematika': 'https://forms.gle/matematika-kelas7',
                 'bahasa-indonesia': 'https://forms.gle/bahasa-indonesia-kelas7',
@@ -276,7 +317,7 @@
                 'bahasa-arab': 'https://forms.gle/bahasa-arab-kelas7',
                 'pjok': 'https://forms.gle/pjok-kelas7',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas7',
-                'informatika': 'https://forms.gle/sQPAfS62cB4W6PAa6',
+                'informatika': 'https://forms.gle/informatika-kelas7',
                 'nahwu-sharaf': 'https://forms.gle/nahwu-sharaf-kelas7',
                 'aqidah': 'https://forms.gle/aqidah-kelas7',
                 'fiqih': 'https://forms.gle/fiqih-kelas7',
@@ -291,7 +332,7 @@
                 'bahasa-arab': 'https://forms.gle/bahasa-arab-kelas8',
                 'pjok': 'https://forms.gle/pjok-kelas8',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas8',
-                'informatika': 'https://forms.gle/sQPAfS62cB4W6PAa6',
+                'informatika': 'https://forms.gle/informatika-kelas8',
                 'nahwu-sharaf': 'https://forms.gle/nahwu-sharaf-kelas8',
                 'aqidah': 'https://forms.gle/aqidah-kelas8',
                 'fiqih': 'https://forms.gle/fiqih-kelas8',
@@ -306,7 +347,7 @@
                 'bahasa-arab': 'https://forms.gle/bahasa-arab-kelas9',
                 'pjok': 'https://forms.gle/pjok-kelas9',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas9',
-                'informatika': 'https://forms.gle/sQPAfS62cB4W6PAa6',
+                'informatika': 'https://forms.gle/informatika-kelas9',
                 'nahwu-sharaf': 'https://forms.gle/nahwu-sharaf-kelas9',
                 'aqidah': 'https://forms.gle/aqidah-kelas9',
                 'fiqih': 'https://forms.gle/fiqih-kelas9',
@@ -328,7 +369,7 @@
                 'biologi': 'https://forms.gle/biologi-kelas10',
                 'matematika': 'https://forms.gle/matematika-kelas10',
                 'ips': 'https://forms.gle/ips-kelas10',
-                'informatika': 'https://forms.gle/sQPAfS62cB4W6PAa6',
+                'informatika': 'https://forms.gle/informatika-kelas10',
                 'pjok': 'https://forms.gle/pjok-kelas10',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas10'
             },
@@ -347,7 +388,7 @@
                 'biologi': 'https://forms.gle/biologi-kelas11',
                 'matematika': 'https://forms.gle/matematika-kelas11',
                 'ips': 'https://forms.gle/ips-kelas11',
-                'informatika': 'https://forms.gle/sQPAfS62cB4W6PAa6',
+                'informatika': 'https://forms.gle/informatika-kelas11',
                 'pjok': 'https://forms.gle/pjok-kelas11',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas11'
             },
@@ -366,7 +407,7 @@
                 'biologi': 'https://forms.gle/biologi-kelas12',
                 'matematika': 'https://forms.gle/matematika-kelas12',
                 'ips': 'https://forms.gle/ips-kelas12',
-                'informatika': 'https://forms.gle/sQPAfS62cB4W6PAa6',
+                'informatika': 'https://forms.gle/informatika-kelas12',
                 'pjok': 'https://forms.gle/pjok-kelas12',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas12'
             }
@@ -411,8 +452,8 @@
 
         // Jadwal ujian hari ini
         const todayExamSchedule = {
-            SMP: ['informatika', 'matematika', 'bahasa-indonesia'],
-            SMA: ['informatika', 'matematika', 'fisika']
+            SMP: ['ipa', 'matematika', 'bahasa-indonesia'],
+            SMA: ['nahwu-sharaf', 'matematika', 'fisika']
         };
 
         let currentStudent = null;
@@ -420,6 +461,10 @@
         let timeRemaining = 90 * 60; // 90 minutes in seconds
         let currentExamSubject = null;
         let isExamActive = false;
+
+        // PWA Install functionality
+        let deferredPrompt;
+        let isInstallPromptShown = false;
 
         // Get completed exams from localStorage
         function getCompletedExams() {
@@ -1273,6 +1318,175 @@
         // Make confirmLogoutAction globally accessible
         window.confirmLogoutAction = confirmLogoutAction;
 
+        // PWA Install Event Listeners
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Show install button and notification
+            showInstallOptions();
+        });
+
+        window.addEventListener('appinstalled', () => {
+            // Hide install options after successful installation
+            hideInstallOptions();
+            showInstallSuccessMessage();
+            deferredPrompt = null;
+        });
+
+        // Check if app is already installed (standalone mode)
+        function isAppInstalled() {
+            return window.matchMedia('(display-mode: standalone)').matches || 
+                   window.navigator.standalone === true;
+        }
+
+        // Show install options
+        function showInstallOptions() {
+            if (!isAppInstalled() && !isInstallPromptShown) {
+                // Show install button in header
+                document.getElementById('installBtn').classList.remove('hidden');
+                
+                // Show install notification after 3 seconds
+                setTimeout(() => {
+                    if (!isInstallPromptShown && !isAppInstalled()) {
+                        document.getElementById('installNotification').classList.remove('hidden');
+                        isInstallPromptShown = true;
+                    }
+                }, 3000);
+            }
+        }
+
+        // Hide install options
+        function hideInstallOptions() {
+            document.getElementById('installBtn').classList.add('hidden');
+            document.getElementById('installNotification').classList.add('hidden');
+            document.getElementById('installModal').classList.add('hidden');
+        }
+
+        // Show install success message
+        function showInstallSuccessMessage() {
+            const successMessage = document.createElement('div');
+            successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-pulse';
+            successMessage.innerHTML = '✅ Aplikasi berhasil diinstall!';
+            document.body.appendChild(successMessage);
+            
+            setTimeout(() => {
+                successMessage.remove();
+            }, 3000);
+        }
+
+        // Install button click handlers
+        document.getElementById('installBtn').addEventListener('click', showInstallModal);
+        document.getElementById('installNotificationBtn').addEventListener('click', showInstallModal);
+
+        // Show install modal
+        function showInstallModal() {
+            document.getElementById('installModal').classList.remove('hidden');
+        }
+
+        // Cancel install
+        document.getElementById('cancelInstall').addEventListener('click', function() {
+            document.getElementById('installModal').classList.add('hidden');
+        });
+
+        // Dismiss install notification
+        document.getElementById('dismissInstallBtn').addEventListener('click', function() {
+            document.getElementById('installNotification').classList.add('hidden');
+            isInstallPromptShown = true; // Don't show again this session
+        });
+
+        // Confirm install
+        document.getElementById('confirmInstall').addEventListener('click', async function() {
+            if (deferredPrompt) {
+                // Show the install prompt
+                deferredPrompt.prompt();
+                
+                // Wait for the user to respond to the prompt
+                const { outcome } = await deferredPrompt.userChoice;
+                
+                if (outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                
+                // Clear the deferredPrompt
+                deferredPrompt = null;
+                
+                // Hide the modal
+                document.getElementById('installModal').classList.add('hidden');
+            } else {
+                // Fallback for browsers that don't support PWA install
+                showManualInstallInstructions();
+            }
+        });
+
+        // Show manual install instructions for unsupported browsers
+        function showManualInstallInstructions() {
+            const instructionsModal = document.createElement('div');
+            instructionsModal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50';
+            instructionsModal.innerHTML = `
+                <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md">
+                    <div class="text-center">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-blue-600 text-2xl">📱</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Install Manual</h3>
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                            <p class="text-blue-800 text-sm font-medium mb-2">📋 CARA INSTALL MANUAL:</p>
+                            <ul class="text-blue-700 text-xs space-y-2 text-left">
+                                <li><strong>Chrome Android:</strong></li>
+                                <li>1️⃣ Klik menu ⋮ di browser</li>
+                                <li>2️⃣ Pilih "Tambahkan ke layar utama"</li>
+                                <li>3️⃣ Klik "Tambahkan"</li>
+                                <br>
+                                <li><strong>Samsung Internet:</strong></li>
+                                <li>1️⃣ Klik menu ☰ di browser</li>
+                                <li>2️⃣ Pilih "Tambahkan halaman ke"</li>
+                                <li>3️⃣ Pilih "Layar Utama"</li>
+                            </ul>
+                        </div>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" 
+                                class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-200">
+                            Mengerti
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(instructionsModal);
+            
+            // Hide install modal
+            document.getElementById('installModal').classList.add('hidden');
+        }
+
+        // Check for install capability on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // If app is already installed, don't show install options
+            if (isAppInstalled()) {
+                hideInstallOptions();
+                return;
+            }
+            
+            // For browsers that don't support beforeinstallprompt
+            if (!window.BeforeInstallPromptEvent) {
+                // Show install options for manual installation
+                setTimeout(() => {
+                    if (!isInstallPromptShown && !isAppInstalled()) {
+                        document.getElementById('installBtn').classList.remove('hidden');
+                        
+                        // Show notification after 5 seconds
+                        setTimeout(() => {
+                            if (!isInstallPromptShown && !isAppInstalled()) {
+                                document.getElementById('installNotification').classList.remove('hidden');
+                                isInstallPromptShown = true;
+                            }
+                        }, 5000);
+                    }
+                }, 2000);
+            }
+        });
+
         // Prevent accidental page refresh during exam
         window.addEventListener('beforeunload', function(e) {
             if (isExamActive) {
@@ -1323,5 +1537,5 @@
             lastTouchEnd = now;
         }, false);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98f8ccbe668bce27',t:'MTc2MDYzMDc0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98f8e49336703e49',t:'MTc2MDYzMTcyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
