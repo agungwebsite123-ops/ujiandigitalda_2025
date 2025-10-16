@@ -1,0 +1,1327 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Portal Ujian Siswa - Daarul Amiin IBS</title>
+  <meta name="description" content="Portal ujian online untuk siswa SMP dan SMA Daarul Amiin IBS">
+  <meta name="theme-color" content="#2563eb"><!-- iOS Safari Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Portal Ujian">
+  <meta name="format-detection" content="telephone=no"><!-- Android Chrome Meta Tags -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Portal Ujian"><!-- PWA Manifest -->
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUG9ydGFsIFVqaWFuIFNpc3dhIC0gRGFhcnVsIEFtaWluIElCUyIsInNob3J0X25hbWUiOiJQb3J0YWwgVWppYW4iLCJzdGFydF91cmwiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmZmZmZmYiLCJ0aGVtZV9jb2xvciI6IiMyNTYzZWIiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRJNElpQm9aV2xuYUhROUlqRXlPQ0lpSUhacFpYZENiM2c5SWpBZ01DQXhNamdnTVRJNElpQm1hV3hzUFNJaU1qVTJNMlZpSWlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpUGp4eVpXTjBJSGRwWkhSb1BTSXhNamdpSUdobGFXZG9kRDBpTVRJNElpQm1hV3hzUFNJaU1qVTJNMlZpSWk4K1BIUmxlSFFnZUQwaU5qUWlJSGs5SWpZMElpQm1hV3hzUFNJaVptWm1abVptSWlCbWIyNTBMWE5wZW1VOUlqUTRJaUJtYjI1MExYZGxhV2RvZEQwaVltOXNaQ0krOEorUXV6d3ZkR1Y0ZEQ0OEwzTjJaejQ9Iiwic2l6ZXMiOiIxMjh4MTI4IiwidHlwZSI6ImltYWdlL3N2Zyt4bWwifV19">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: none;
+            position: relative;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+        }
+        
+        html {
+            height: -webkit-fill-available;
+        }
+        
+        input, textarea, select {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+            -webkit-touch-callout: default;
+            font-size: 16px !important;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 8px;
+        }
+        
+        button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            .mobile-padding {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+            
+            .mobile-text-sm {
+                font-size: 14px !important;
+            }
+            
+            .mobile-spacing {
+                margin-bottom: 12px !important;
+            }
+        }
+        
+        /* iOS Safari specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .ios-safe-area {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+                padding-left: env(safe-area-inset-left);
+                padding-right: env(safe-area-inset-right);
+            }
+        }
+        
+        .timer-warning {
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Fullscreen iframe styles */
+        .exam-iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            z-index: 9999;
+            background: white;
+        }
+        
+        /* Timer overlay */
+        .timer-overlay {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-weight: bold;
+            z-index: 10000;
+            font-size: 14px;
+        }
+        
+        /* Exit button overlay */
+        .exit-overlay {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(75, 85, 99, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            z-index: 10000;
+            font-size: 12px;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        
+        .exit-overlay:hover, .exit-overlay:active {
+            background: rgba(239, 68, 68, 0.9);
+        }
+        
+        /* Mobile timer adjustments */
+        @media (max-width: 768px) {
+            .timer-overlay {
+                top: env(safe-area-inset-top, 10px);
+                right: env(safe-area-inset-right, 10px);
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            .exit-overlay {
+                top: env(safe-area-inset-top, 10px);
+                left: env(safe-area-inset-left, 10px);
+                padding: 6px 12px;
+                font-size: 10px;
+            }
+        }
+        
+        /* Prevent zoom on double tap */
+        .no-zoom {
+            touch-action: manipulation;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen ios-safe-area no-zoom"><!-- Login Page -->
+  <div id="loginPage" class="min-h-screen flex items-center justify-center p-4 mobile-padding">
+   <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 w-full max-w-md">
+    <div class="text-center mb-6 md:mb-8">
+     <div class="bg-blue-600 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4"><span class="text-white text-xl md:text-2xl font-bold">📚</span>
+     </div>
+     <h1 class="text-xl md:text-2xl font-bold text-gray-800">Portal Ujian Siswa</h1>
+     <p class="text-gray-600 mt-2 text-sm md:text-base">Daarul Amiin IBS</p>
+    </div>
+    <form id="loginForm" class="space-y-4 md:space-y-6">
+     <div><label for="studentName" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label> <input type="text" id="studentName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent no-zoom" placeholder="Masukkan nama lengkap" autocomplete="name" inputmode="text">
+     </div>
+     <div><label for="studentLevel" class="block text-sm font-medium text-gray-700 mb-2">Jenjang</label> <select id="studentLevel" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent no-zoom"> <option value="">Pilih Jenjang</option> <option value="SMP">SMP</option> <option value="SMA">SMA</option> </select>
+     </div>
+     <div><label for="studentClass" class="block text-sm font-medium text-gray-700 mb-2">Kelas</label> <select id="studentClass" required disabled class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 no-zoom"> <option value="">Pilih jenjang terlebih dahulu</option> </select>
+     </div><button type="submit" class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 active:bg-blue-800 transition duration-200 font-medium no-zoom"> Masuk ke Portal Ujian </button>
+    </form>
+   </div>
+  </div><!-- Main Dashboard -->
+  <div id="dashboardPage" class="hidden min-h-screen"><!-- Header -->
+   <header class="bg-white shadow-sm border-b ios-safe-area">
+    <div class="max-w-6xl mx-auto px-4 py-3 mobile-padding">
+     <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-2 md:space-x-3">
+       <div class="bg-blue-600 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center"><span class="text-white font-bold text-sm md:text-base">📚</span>
+       </div>
+       <div>
+        <h1 class="text-base md:text-xl font-bold text-gray-800">Portal Ujian</h1>
+        <p class="text-xs md:text-sm text-gray-600" id="welcomeText">Selamat datang</p>
+       </div>
+      </div>
+      <div class="flex items-center space-x-2 md:space-x-4"><button id="logoutBtn" class="bg-red-500 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-red-600 active:bg-red-700 transition duration-200 text-xs md:text-base no-zoom"> Logout </button>
+      </div>
+     </div>
+    </div>
+   </header><!-- Main Content -->
+   <main class="max-w-6xl mx-auto px-4 py-4 md:py-8 mobile-padding">
+    <div class="bg-white rounded-2xl shadow-lg p-4 md:p-8">
+     <div class="text-center mb-6 md:mb-8">
+      <h2 class="text-lg md:text-2xl font-bold text-gray-800 mb-2">Daftar Mata Pelajaran Ujian</h2>
+      <p class="text-sm md:text-base text-gray-600">Pilih mata pelajaran yang akan diujikan hari ini</p>
+      <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 md:p-4 mt-4 mobile-spacing">
+       <p class="text-yellow-800 font-medium text-xs md:text-sm mobile-text-sm">⚠️ Penting: Setiap ujian hanya dapat diakses SATU KALI dan berlangsung selama 90 menit</p>
+      </div><!-- Exam Schedule Info -->
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 md:p-4 mt-4 mobile-spacing">
+       <h4 class="text-blue-800 font-medium text-sm md:text-base mb-2">📅 Jadwal Ujian Hari Ini</h4>
+       <div id="examSchedule" class="text-blue-700 text-xs md:text-sm mobile-text-sm"><!-- Schedule will be populated by JavaScript -->
+       </div>
+      </div><!-- Simple Info -->
+      <div class="bg-green-50 border border-green-200 rounded-lg p-3 md:p-4 mt-4 mobile-spacing">
+       <h4 class="text-green-800 font-medium text-sm md:text-base mb-2">📝 CARA MENGERJAKAN</h4>
+       <div class="text-green-700 text-xs md:text-sm mobile-text-sm">
+        <p class="mb-1 md:mb-2">✅ Klik mata pelajaran yang ingin dikerjakan</p>
+        <p class="mb-1 md:mb-2">✅ Google Form akan terbuka fullscreen</p>
+        <p class="mb-1 md:mb-2">✅ Kerjakan soal dengan tenang</p>
+        <p>✅ Klik "Keluar Ujian" jika sudah selesai</p>
+       </div>
+      </div>
+     </div>
+     <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6" id="subjectList"><!-- Subjects will be populated by JavaScript -->
+     </div>
+    </div>
+   </main>
+  </div><!-- Exam Modal -->
+  <div id="examModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 mobile-padding">
+   <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 w-full max-w-md max-h-screen overflow-y-auto">
+    <div class="text-center">
+     <div class="bg-blue-100 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4"><span class="text-blue-600 text-xl md:text-2xl">📝</span>
+     </div>
+     <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4" id="modalTitle">Konfirmasi Ujian</h3>
+     <p class="text-gray-600 mb-4 md:mb-6 text-sm md:text-base" id="modalMessage">Anda akan memulai ujian dan timer 90 menit akan dimulai.</p>
+     <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 md:p-4 mb-3 md:mb-4">
+      <p class="text-blue-800 text-sm font-medium">📋 PETUNJUK UJIAN:</p>
+      <ul class="text-blue-700 text-xs mt-2 space-y-1 text-left">
+       <li>• Google Form akan terbuka fullscreen</li>
+       <li>• Timer 90 menit akan berjalan di pojok kanan atas</li>
+       <li>• Klik "Keluar Ujian" jika sudah selesai</li>
+       <li>• Pastikan jawaban sudah di-submit di Google Form</li>
+      </ul>
+     </div>
+     <div class="bg-red-50 border border-red-200 rounded-lg p-3 md:p-4 mb-4 md:mb-6">
+      <p class="text-red-800 text-sm font-medium">🚨 PERINGATAN KEAMANAN:</p>
+      <ul class="text-red-700 text-xs mt-2 space-y-1 text-left">
+       <li>• JANGAN buka aplikasi lain selama ujian</li>
+       <li>• JANGAN pindah tab browser</li>
+       <li>• Maksimal 2 pelanggaran, ujian akan DIHENTIKAN</li>
+       <li>• Ujian yang dihentikan TIDAK DAPAT DIULANG</li>
+      </ul>
+     </div>
+     <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4"><button id="cancelExam" class="flex-1 bg-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-400 active:bg-gray-500 transition duration-200 no-zoom"> Batal </button> <button id="startExam" class="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 active:bg-blue-800 transition duration-200 no-zoom"> Mulai Ujian </button>
+     </div>
+    </div>
+   </div>
+  </div><!-- Fullscreen Exam Container -->
+  <div id="examContainer" class="hidden"><!-- Timer Overlay -->
+   <div id="timerOverlay" class="timer-overlay"><span id="timeLeft">90:00</span>
+   </div><!-- Exit Button Overlay -->
+   <div id="exitOverlay" class="exit-overlay"><span>Keluar Ujian</span>
+   </div><!-- Google Form Iframe --> <iframe id="examIframe" class="exam-iframe" src="" allowfullscreen></iframe>
+  </div>
+  <script>
+        // Link Google Form berdasarkan kelas
+        const formUrlsByClass = {
+            // SMP Classes
+            'VII': {
+                'ipa': 'https://forms.gle/ipa-kelas7',
+                'ips': 'https://forms.gle/ips-kelas7',
+                'matematika': 'https://forms.gle/matematika-kelas7',
+                'bahasa-indonesia': 'https://forms.gle/bahasa-indonesia-kelas7',
+                'bahasa-inggris': 'https://forms.gle/bahasa-inggris-kelas7',
+                'bahasa-arab': 'https://forms.gle/bahasa-arab-kelas7',
+                'pjok': 'https://forms.gle/pjok-kelas7',
+                'bimbingan-konseling': 'https://forms.gle/bk-kelas7',
+                'informatika': 'https://forms.gle/informatika-kelas7',
+                'nahwu-sharaf': 'https://forms.gle/nahwu-sharaf-kelas7',
+                'aqidah': 'https://forms.gle/aqidah-kelas7',
+                'fiqih': 'https://forms.gle/fiqih-kelas7',
+                'qurdis': 'https://forms.gle/qurdis-kelas7'
+            },
+            'VIII': {
+                'ipa': 'https://forms.gle/ipa-kelas8',
+                'ips': 'https://forms.gle/ips-kelas8',
+                'matematika': 'https://forms.gle/matematika-kelas8',
+                'bahasa-indonesia': 'https://forms.gle/bahasa-indonesia-kelas8',
+                'bahasa-inggris': 'https://forms.gle/bahasa-inggris-kelas8',
+                'bahasa-arab': 'https://forms.gle/bahasa-arab-kelas8',
+                'pjok': 'https://forms.gle/pjok-kelas8',
+                'bimbingan-konseling': 'https://forms.gle/bk-kelas8',
+                'informatika': 'https://forms.gle/informatika-kelas8',
+                'nahwu-sharaf': 'https://forms.gle/nahwu-sharaf-kelas8',
+                'aqidah': 'https://forms.gle/aqidah-kelas8',
+                'fiqih': 'https://forms.gle/fiqih-kelas8',
+                'qurdis': 'https://forms.gle/qurdis-kelas8'
+            },
+            'IX': {
+                'ipa': 'https://forms.gle/ipa-kelas9',
+                'ips': 'https://forms.gle/ips-kelas9',
+                'matematika': 'https://forms.gle/matematika-kelas9',
+                'bahasa-indonesia': 'https://forms.gle/bahasa-indonesia-kelas9',
+                'bahasa-inggris': 'https://forms.gle/bahasa-inggris-kelas9',
+                'bahasa-arab': 'https://forms.gle/bahasa-arab-kelas9',
+                'pjok': 'https://forms.gle/pjok-kelas9',
+                'bimbingan-konseling': 'https://forms.gle/bk-kelas9',
+                'informatika': 'https://forms.gle/informatika-kelas9',
+                'nahwu-sharaf': 'https://forms.gle/nahwu-sharaf-kelas9',
+                'aqidah': 'https://forms.gle/aqidah-kelas9',
+                'fiqih': 'https://forms.gle/fiqih-kelas9',
+                'qurdis': 'https://forms.gle/qurdis-kelas9'
+            },
+            // SMA Classes
+            'X': {
+                'nahwu-sharaf': 'https://forms.gle/nahwu-sharaf-kelas10',
+                'quran-hadist': 'https://forms.gle/quran-hadist-kelas10',
+                'aqidah-akhlak': 'https://forms.gle/aqidah-akhlak-kelas10',
+                'spi': 'https://forms.gle/spi-kelas10',
+                'fiqih': 'https://forms.gle/fiqih-kelas10',
+                'bahasa-arab': 'https://forms.gle/bahasa-arab-kelas10',
+                'bahasa-indonesia': 'https://forms.gle/bahasa-indonesia-kelas10',
+                'bahasa-inggris': 'https://forms.gle/bahasa-inggris-kelas10',
+                'ipa-terpadu': 'https://forms.gle/ipa-terpadu-kelas10',
+                'fisika': 'https://forms.gle/fisika-kelas10',
+                'kimia': 'https://forms.gle/kimia-kelas10',
+                'biologi': 'https://forms.gle/biologi-kelas10',
+                'matematika': 'https://forms.gle/matematika-kelas10',
+                'ips': 'https://forms.gle/ips-kelas10',
+                'informatika': 'https://forms.gle/informatika-kelas10',
+                'pjok': 'https://forms.gle/pjok-kelas10',
+                'bimbingan-konseling': 'https://forms.gle/bk-kelas10'
+            },
+            'XI': {
+                'nahwu-sharaf': 'https://forms.gle/nahwu-sharaf-kelas11',
+                'quran-hadist': 'https://forms.gle/quran-hadist-kelas11',
+                'aqidah-akhlak': 'https://forms.gle/aqidah-akhlak-kelas11',
+                'spi': 'https://forms.gle/spi-kelas11',
+                'fiqih': 'https://forms.gle/fiqih-kelas11',
+                'bahasa-arab': 'https://forms.gle/bahasa-arab-kelas11',
+                'bahasa-indonesia': 'https://forms.gle/bahasa-indonesia-kelas11',
+                'bahasa-inggris': 'https://forms.gle/bahasa-inggris-kelas11',
+                'ipa-terpadu': 'https://forms.gle/ipa-terpadu-kelas11',
+                'fisika': 'https://forms.gle/fisika-kelas11',
+                'kimia': 'https://forms.gle/kimia-kelas11',
+                'biologi': 'https://forms.gle/biologi-kelas11',
+                'matematika': 'https://forms.gle/matematika-kelas11',
+                'ips': 'https://forms.gle/ips-kelas11',
+                'informatika': 'https://forms.gle/informatika-kelas11',
+                'pjok': 'https://forms.gle/pjok-kelas11',
+                'bimbingan-konseling': 'https://forms.gle/bk-kelas11'
+            },
+            'XII': {
+                'nahwu-sharaf': 'https://forms.gle/nahwu-sharaf-kelas12',
+                'quran-hadist': 'https://forms.gle/quran-hadist-kelas12',
+                'aqidah-akhlak': 'https://forms.gle/aqidah-akhlak-kelas12',
+                'spi': 'https://forms.gle/spi-kelas12',
+                'fiqih': 'https://forms.gle/fiqih-kelas12',
+                'bahasa-arab': 'https://forms.gle/bahasa-arab-kelas12',
+                'bahasa-indonesia': 'https://forms.gle/bahasa-indonesia-kelas12',
+                'bahasa-inggris': 'https://forms.gle/bahasa-inggris-kelas12',
+                'ipa-terpadu': 'https://forms.gle/ipa-terpadu-kelas12',
+                'fisika': 'https://forms.gle/fisika-kelas12',
+                'kimia': 'https://forms.gle/kimia-kelas12',
+                'biologi': 'https://forms.gle/biologi-kelas12',
+                'matematika': 'https://forms.gle/matematika-kelas12',
+                'ips': 'https://forms.gle/ips-kelas12',
+                'informatika': 'https://forms.gle/informatika-kelas12',
+                'pjok': 'https://forms.gle/pjok-kelas12',
+                'bimbingan-konseling': 'https://forms.gle/bk-kelas12'
+            }
+        };
+
+        // Mata pelajaran berdasarkan jenjang
+        const subjectsBySMP = [
+            { id: 'ipa', name: 'IPA', icon: '🔬', color: 'bg-red-500' },
+            { id: 'ips', name: 'IPS', icon: '🌏', color: 'bg-orange-500' },
+            { id: 'matematika', name: 'Matematika', icon: '🔢', color: 'bg-blue-500' },
+            { id: 'bahasa-indonesia', name: 'Bahasa Indonesia', icon: '📖', color: 'bg-green-500' },
+            { id: 'bahasa-inggris', name: 'Bahasa Inggris', icon: '🌍', color: 'bg-purple-500' },
+            { id: 'bahasa-arab', name: 'Bahasa Arab', icon: '📜', color: 'bg-amber-500' },
+            { id: 'pjok', name: 'PJOK', icon: '⚽', color: 'bg-cyan-500' },
+            { id: 'bimbingan-konseling', name: 'Bimbingan Konseling', icon: '🧠', color: 'bg-indigo-500' },
+            { id: 'informatika', name: 'Informatika', icon: '💻', color: 'bg-slate-600' },
+            { id: 'nahwu-sharaf', name: 'Nahwu Sharaf', icon: '📚', color: 'bg-teal-600' },
+            { id: 'aqidah', name: 'Aqidah', icon: '🕌', color: 'bg-emerald-600' },
+            { id: 'fiqih', name: 'Fiqih', icon: '📖', color: 'bg-green-600' },
+            { id: 'qurdis', name: 'Qurdis', icon: '📿', color: 'bg-purple-600' }
+        ];
+
+        const subjectsBySMA = [
+            { id: 'nahwu-sharaf', name: 'Nahwu Sharaf', icon: '📚', color: 'bg-teal-600' },
+            { id: 'quran-hadist', name: 'Qur\'an Hadist', icon: '📿', color: 'bg-purple-600' },
+            { id: 'aqidah-akhlak', name: 'Aqidah Akhlak', icon: '🕌', color: 'bg-emerald-600' },
+            { id: 'spi', name: 'Sejarah Peradaban Islam (SPI)', icon: '🏛️', color: 'bg-orange-600' },
+            { id: 'fiqih', name: 'Fiqih', icon: '📖', color: 'bg-green-600' },
+            { id: 'bahasa-arab', name: 'Bahasa Arab', icon: '📜', color: 'bg-amber-500' },
+            { id: 'bahasa-indonesia', name: 'Bahasa Indonesia', icon: '📖', color: 'bg-green-500' },
+            { id: 'bahasa-inggris', name: 'Bahasa Inggris', icon: '🌍', color: 'bg-purple-500' },
+            { id: 'ipa-terpadu', name: 'IPA Terpadu', icon: '🔬', color: 'bg-red-500' },
+            { id: 'fisika', name: 'Fisika', icon: '⚛️', color: 'bg-red-600' },
+            { id: 'kimia', name: 'Kimia', icon: '🧪', color: 'bg-yellow-500' },
+            { id: 'biologi', name: 'Biologi', icon: '🌱', color: 'bg-emerald-500' },
+            { id: 'matematika', name: 'Matematika', icon: '🔢', color: 'bg-blue-500' },
+            { id: 'ips', name: 'IPS', icon: '🌏', color: 'bg-orange-500' },
+            { id: 'informatika', name: 'Informatika', icon: '💻', color: 'bg-blue-600' },
+            { id: 'pjok', name: 'PJOK', icon: '⚽', color: 'bg-cyan-500' },
+            { id: 'bimbingan-konseling', name: 'Bimbingan Konseling', icon: '🧠', color: 'bg-indigo-500' }
+        ];
+
+        // Jadwal ujian hari ini
+        const todayExamSchedule = {
+            SMP: ['ipa', 'matematika', 'bahasa-indonesia'],
+            SMA: ['nahwu-sharaf', 'matematika', 'fisika']
+        };
+
+        let currentStudent = null;
+        let examTimer = null;
+        let timeRemaining = 90 * 60; // 90 minutes in seconds
+        let currentExamSubject = null;
+        let isExamActive = false;
+
+        // Get completed exams from localStorage
+        function getCompletedExams() {
+            const completed = localStorage.getItem('completedExams');
+            return completed ? JSON.parse(completed) : {};
+        }
+
+        // Mark exam as completed
+        function markExamCompleted(studentKey, subjectId) {
+            const completed = getCompletedExams();
+            if (!completed[studentKey]) {
+                completed[studentKey] = [];
+            }
+            completed[studentKey].push(subjectId);
+            localStorage.setItem('completedExams', JSON.stringify(completed));
+        }
+
+        // Check if exam is completed
+        function isExamCompleted(studentKey, subjectId) {
+            const completed = getCompletedExams();
+            return completed[studentKey] && completed[studentKey].includes(subjectId);
+        }
+
+        // Get subjects based on level
+        function getSubjectsByLevel(level) {
+            return level === 'SMP' ? subjectsBySMP : subjectsBySMA;
+        }
+
+        // Get form URL based on class and subject
+        function getFormUrl(studentClass, subjectId) {
+            const grade = studentClass.replace(/[AB]$/, '');
+            
+            if (formUrlsByClass[grade] && formUrlsByClass[grade][subjectId]) {
+                return formUrlsByClass[grade][subjectId];
+            }
+            
+            return `https://forms.gle/sample-${subjectId}-${grade.toLowerCase()}`;
+        }
+
+        // Check if subject is scheduled for today
+        function isSubjectScheduledToday(level, subjectId) {
+            return todayExamSchedule[level] && todayExamSchedule[level].includes(subjectId);
+        }
+
+        // Update class options based on selected level
+        document.getElementById('studentLevel').addEventListener('change', function() {
+            const level = this.value;
+            const classSelect = document.getElementById('studentClass');
+            
+            classSelect.innerHTML = '<option value="">Pilih Kelas</option>';
+            
+            if (level === 'SMP') {
+                ['A', 'B'].forEach(section => {
+                    const option = document.createElement('option');
+                    option.value = `VII${section}`;
+                    option.textContent = `VII ${section}`;
+                    classSelect.appendChild(option);
+                });
+                
+                ['A', 'B', 'C'].forEach(section => {
+                    const option = document.createElement('option');
+                    option.value = `VIII${section}`;
+                    option.textContent = `VIII ${section}`;
+                    classSelect.appendChild(option);
+                });
+                
+                ['A', 'B'].forEach(section => {
+                    const option = document.createElement('option');
+                    option.value = `IX${section}`;
+                    option.textContent = `IX ${section}`;
+                    classSelect.appendChild(option);
+                });
+                
+                classSelect.disabled = false;
+            } else if (level === 'SMA') {
+                ['X', 'XI', 'XII'].forEach(grade => {
+                    ['A', 'B'].forEach(section => {
+                        const option = document.createElement('option');
+                        option.value = `${grade}${section}`;
+                        option.textContent = `${grade} ${section}`;
+                        classSelect.appendChild(option);
+                    });
+                });
+                classSelect.disabled = false;
+            } else {
+                classSelect.disabled = true;
+            }
+        });
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('studentName').value.trim();
+            const level = document.getElementById('studentLevel').value;
+            const studentClass = document.getElementById('studentClass').value;
+            
+            if (name && level && studentClass) {
+                currentStudent = {
+                    name: name,
+                    level: level,
+                    class: studentClass,
+                    key: `${name}-${level}-${studentClass}`.toLowerCase().replace(/\s+/g, '-')
+                };
+                
+                document.getElementById('welcomeText').textContent = `${name} - ${level} ${studentClass}`;
+                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('dashboardPage').classList.remove('hidden');
+                
+                renderSubjects();
+                renderExamSchedule();
+            }
+        });
+
+        // Render exam schedule
+        function renderExamSchedule() {
+            const scheduleDiv = document.getElementById('examSchedule');
+            const todaySubjects = todayExamSchedule[currentStudent.level] || [];
+            
+            if (todaySubjects.length === 0) {
+                scheduleDiv.innerHTML = '<p class="text-blue-600">Tidak ada ujian yang dijadwalkan hari ini.</p>';
+            } else {
+                const subjects = getSubjectsByLevel(currentStudent.level);
+                const scheduledSubjectNames = todaySubjects.map(id => {
+                    const subject = subjects.find(s => s.id === id);
+                    return subject ? subject.name : id;
+                });
+                scheduleDiv.innerHTML = `<p class="text-blue-600">Mata pelajaran hari ini: <strong>${scheduledSubjectNames.join(', ')}</strong></p>`;
+            }
+        }
+
+        // Check if device is mobile
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                   window.innerWidth <= 768;
+        }
+
+        // Render subjects
+        function renderSubjects() {
+            const subjectList = document.getElementById('subjectList');
+            subjectList.innerHTML = '';
+            
+            const subjects = getSubjectsByLevel(currentStudent.level);
+            const isMobile = isMobileDevice();
+            
+            subjects.forEach(subject => {
+                const isCompleted = isExamCompleted(currentStudent.key, subject.id);
+                const isScheduled = isSubjectScheduledToday(currentStudent.level, subject.id);
+                
+                const subjectCard = document.createElement('div');
+                let cardClass, statusBadge, clickable = false;
+                
+                if (isCompleted) {
+                    cardClass = 'border-red-300 bg-red-50 opacity-80';
+                    statusBadge = `<span class="inline-block bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-medium ${isMobile ? 'text-xs' : 'md:text-sm'}">❌ ${isMobile ? 'Selesai' : 'Tidak Dapat Diulang'}</span>`;
+                } else if (isScheduled) {
+                    cardClass = 'border-blue-300 bg-blue-50 hover:border-blue-400 hover:shadow-lg cursor-pointer active:bg-blue-100';
+                    statusBadge = `<span class="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium ${isMobile ? 'text-xs' : 'md:text-sm'}">📝 ${isMobile ? 'Siap' : 'Siap Dikerjakan'}</span>`;
+                    clickable = true;
+                } else {
+                    cardClass = 'border-gray-300 bg-gray-100 opacity-50';
+                    statusBadge = `<span class="inline-block bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium ${isMobile ? 'text-xs' : 'md:text-sm'}">🔒 ${isMobile ? 'Terkunci' : 'Tidak Dijadwalkan'}</span>`;
+                }
+                
+                subjectCard.className = `bg-white border-2 rounded-xl p-3 md:p-6 transition duration-200 no-zoom ${cardClass}`;
+                
+                const iconSize = isMobile ? 'w-10 h-10' : 'w-12 h-12 md:w-16 md:h-16';
+                const textSize = isMobile ? 'text-xs' : 'text-sm md:text-lg';
+                const iconTextSize = isMobile ? 'text-base' : 'text-lg md:text-2xl';
+                
+                subjectCard.innerHTML = `
+                    <div class="text-center">
+                        <div class="${subject.color} ${iconSize} rounded-full flex items-center justify-center mx-auto mb-2 md:mb-4 ${!isScheduled && !isCompleted ? 'opacity-50' : ''}">
+                            <span class="text-white ${iconTextSize}">${subject.icon}</span>
+                        </div>
+                        <h3 class="${textSize} font-bold text-gray-800 mb-2 leading-tight">${subject.name}</h3>
+                        ${statusBadge}
+                    </div>
+                `;
+                
+                if (clickable) {
+                    subjectCard.addEventListener('click', () => showExamModal(subject));
+                    subjectCard.addEventListener('touchstart', () => {}, {passive: true});
+                }
+                
+                subjectList.appendChild(subjectCard);
+            });
+        }
+
+        // Show exam confirmation modal
+        function showExamModal(subject) {
+            const formUrl = getFormUrl(currentStudent.class, subject.id);
+            currentExamSubject = {
+                ...subject,
+                formUrl: formUrl
+            };
+            
+            document.getElementById('modalTitle').textContent = `Ujian ${subject.name}`;
+            document.getElementById('modalMessage').textContent = 
+                `Anda akan memulai ujian ${subject.name} untuk kelas ${currentStudent.class}. Timer 90 menit akan dimulai dan Google Form akan terbuka fullscreen.`;
+            document.getElementById('examModal').classList.remove('hidden');
+        }
+
+        // Cancel exam
+        document.getElementById('cancelExam').addEventListener('click', function() {
+            document.getElementById('examModal').classList.add('hidden');
+            currentExamSubject = null;
+        });
+
+        // Start exam
+        document.getElementById('startExam').addEventListener('click', function() {
+            if (currentExamSubject) {
+                // Mark exam as completed immediately
+                markExamCompleted(currentStudent.key, currentExamSubject.id);
+                
+                // Start fullscreen exam
+                startFullscreenExam();
+                
+                // Close modal and refresh subjects
+                document.getElementById('examModal').classList.add('hidden');
+                renderSubjects();
+                
+                currentExamSubject = null;
+            }
+        });
+
+        // Start fullscreen exam
+        function startFullscreenExam() {
+            isExamActive = true;
+            securityViolations = 0; // Reset violation counter
+            
+            // Request fullscreen mode
+            requestFullscreen();
+            
+            // Hide dashboard and show exam container
+            document.getElementById('dashboardPage').classList.add('hidden');
+            document.getElementById('examContainer').classList.remove('hidden');
+            
+            // Load Google Form in iframe
+            const iframe = document.getElementById('examIframe');
+            iframe.src = currentExamSubject.formUrl;
+            
+            // Start timer
+            startExamTimer();
+            
+            // Setup exit button
+            document.getElementById('exitOverlay').addEventListener('click', exitExam);
+            
+            // Prevent scrolling on body
+            document.body.style.overflow = 'hidden';
+            
+            // Enable exam security measures
+            enableExamSecurity();
+        }
+
+        // Request fullscreen mode
+        function requestFullscreen() {
+            const element = document.documentElement;
+            
+            // For mobile devices, try different fullscreen methods
+            if (isMobileDevice()) {
+                // iOS Safari specific
+                if (element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if (element.webkitEnterFullscreen) {
+                    element.webkitEnterFullscreen();
+                }
+                // Android Chrome
+                else if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                }
+                // Fallback: hide address bar on mobile
+                else {
+                    window.scrollTo(0, 1);
+                    document.body.style.height = '100vh';
+                    document.body.style.overflow = 'hidden';
+                }
+            } else {
+                // Desktop fullscreen
+                if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if (element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                } else if (element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if (element.msRequestFullscreen) {
+                    element.msRequestFullscreen();
+                }
+            }
+        }
+
+        // Exit fullscreen mode
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+
+        // Enable exam security measures
+        function enableExamSecurity() {
+            // Disable right-click context menu
+            document.addEventListener('contextmenu', preventDefaultAction);
+            
+            // Disable common keyboard shortcuts
+            document.addEventListener('keydown', handleExamKeydown);
+            
+            // Monitor fullscreen changes
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+            document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+            
+            // Monitor window focus/blur
+            window.addEventListener('blur', handleWindowBlur);
+            window.addEventListener('focus', handleWindowFocus);
+            
+            // Monitor visibility changes (tab switching)
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+        }
+
+        // Disable exam security measures
+        function disableExamSecurity() {
+            document.removeEventListener('contextmenu', preventDefaultAction);
+            document.removeEventListener('keydown', handleExamKeydown);
+            document.removeEventListener('fullscreenchange', handleFullscreenChange);
+            document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+            document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+            window.removeEventListener('blur', handleWindowBlur);
+            window.removeEventListener('focus', handleWindowFocus);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+        }
+
+        // Prevent default actions
+        function preventDefaultAction(e) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Handle keyboard shortcuts during exam
+        function handleExamKeydown(e) {
+            // Disable F11 (fullscreen toggle)
+            if (e.key === 'F11') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Alt+Tab (window switching)
+            if (e.altKey && e.key === 'Tab') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Ctrl+Tab (tab switching)
+            if (e.ctrlKey && e.key === 'Tab') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Windows key combinations
+            if (e.key === 'Meta' || e.metaKey) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Ctrl+Shift+I (Developer Tools)
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable F12 (Developer Tools)
+            if (e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Ctrl+U (View Source)
+            if (e.ctrlKey && e.key === 'u') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Ctrl+Shift+C (Inspect Element)
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Ctrl+N (New Window)
+            if (e.ctrlKey && e.key === 'n') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Ctrl+T (New Tab)
+            if (e.ctrlKey && e.key === 't') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Ctrl+W (Close Tab)
+            if (e.ctrlKey && e.key === 'w') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Ctrl+R (Refresh)
+            if (e.ctrlKey && e.key === 'r') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Ctrl+F5 (Hard Refresh)
+            if (e.ctrlKey && e.key === 'F5') {
+                e.preventDefault();
+                return false;
+            }
+        }
+
+        // Handle fullscreen changes
+        function handleFullscreenChange() {
+            if (!document.fullscreenElement && 
+                !document.webkitFullscreenElement && 
+                !document.mozFullScreenElement && 
+                !document.msFullscreenElement) {
+                
+                if (isExamActive) {
+                    // Show warning if user exits fullscreen during exam
+                    showFullscreenWarning();
+                }
+            }
+        }
+
+        // Security violation tracking
+        let securityViolations = 0;
+        const MAX_VIOLATIONS = 2; // Maximum allowed violations before exam termination
+        let violationTimer = null;
+
+        // Handle window blur (losing focus)
+        function handleWindowBlur() {
+            if (isExamActive) {
+                securityViolations++;
+                showFocusWarning();
+                
+                if (securityViolations >= MAX_VIOLATIONS) {
+                    terminateExamForViolation();
+                } else {
+                    showViolationWarning();
+                }
+            }
+        }
+
+        // Handle window focus (gaining focus back)
+        function handleWindowFocus() {
+            if (isExamActive && securityViolations < MAX_VIOLATIONS) {
+                hideFocusWarning();
+                hideViolationWarning();
+            }
+        }
+
+        // Handle visibility changes (tab switching)
+        function handleVisibilityChange() {
+            if (document.hidden && isExamActive) {
+                securityViolations++;
+                showTabSwitchWarning();
+                
+                if (securityViolations >= MAX_VIOLATIONS) {
+                    terminateExamForViolation();
+                } else {
+                    showViolationWarning();
+                }
+            } else if (!document.hidden && isExamActive && securityViolations < MAX_VIOLATIONS) {
+                hideTabSwitchWarning();
+                hideViolationWarning();
+            }
+        }
+
+        // Show fullscreen warning
+        function showFullscreenWarning() {
+            const warningDiv = document.createElement('div');
+            warningDiv.id = 'fullscreenWarning';
+            warningDiv.className = 'fixed inset-0 bg-red-600 bg-opacity-95 flex items-center justify-center z-50';
+            warningDiv.innerHTML = `
+                <div class="text-center text-white p-8">
+                    <div class="text-6xl mb-4">⚠️</div>
+                    <h2 class="text-3xl font-bold mb-4">PERINGATAN!</h2>
+                    <p class="text-xl mb-6">Anda keluar dari mode fullscreen!</p>
+                    <p class="text-lg mb-8">Klik tombol di bawah untuk kembali ke mode fullscreen</p>
+                    <button onclick="returnToFullscreen()" class="bg-white text-red-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition duration-200 font-bold text-lg">
+                        Kembali ke Fullscreen
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(warningDiv);
+        }
+
+        // Show focus warning
+        function showFocusWarning() {
+            let focusWarning = document.getElementById('focusWarning');
+            if (!focusWarning) {
+                focusWarning = document.createElement('div');
+                focusWarning.id = 'focusWarning';
+                focusWarning.className = 'fixed top-0 left-0 right-0 bg-orange-600 text-white text-center py-3 z-40 font-bold';
+                focusWarning.innerHTML = '⚠️ PERINGATAN: Jangan beralih ke aplikasi lain! Fokus pada ujian!';
+                document.body.appendChild(focusWarning);
+            }
+        }
+
+        // Hide focus warning
+        function hideFocusWarning() {
+            const focusWarning = document.getElementById('focusWarning');
+            if (focusWarning) {
+                focusWarning.remove();
+            }
+        }
+
+        // Show tab switch warning
+        function showTabSwitchWarning() {
+            let tabWarning = document.getElementById('tabWarning');
+            if (!tabWarning) {
+                tabWarning = document.createElement('div');
+                tabWarning.id = 'tabWarning';
+                tabWarning.className = 'fixed top-0 left-0 right-0 bg-red-600 text-white text-center py-3 z-40 font-bold animate-pulse';
+                tabWarning.innerHTML = '🚫 PERINGATAN: Jangan berpindah tab! Kembali ke ujian sekarang!';
+                document.body.appendChild(tabWarning);
+            }
+        }
+
+        // Hide tab switch warning
+        function hideTabSwitchWarning() {
+            const tabWarning = document.getElementById('tabWarning');
+            if (tabWarning) {
+                tabWarning.remove();
+            }
+        }
+
+        // Show violation warning
+        function showViolationWarning() {
+            let violationWarning = document.getElementById('violationWarning');
+            if (!violationWarning) {
+                violationWarning = document.createElement('div');
+                violationWarning.id = 'violationWarning';
+                violationWarning.className = 'fixed inset-0 bg-red-600 bg-opacity-95 flex items-center justify-center z-50';
+                
+                const remainingViolations = MAX_VIOLATIONS - securityViolations;
+                
+                violationWarning.innerHTML = `
+                    <div class="text-center text-white p-8 max-w-md">
+                        <div class="text-6xl mb-4">🚨</div>
+                        <h2 class="text-3xl font-bold mb-4">PELANGGARAN KEAMANAN!</h2>
+                        <p class="text-xl mb-4">Anda telah melanggar aturan ujian!</p>
+                        <div class="bg-red-700 rounded-lg p-4 mb-6">
+                            <p class="text-lg font-bold">Pelanggaran ke-${securityViolations} dari ${MAX_VIOLATIONS}</p>
+                            <p class="text-sm mt-2">Sisa kesempatan: ${remainingViolations}</p>
+                        </div>
+                        <p class="text-lg mb-6">
+                            ${remainingViolations > 0 
+                                ? `Jika melanggar lagi, ujian akan BERAKHIR OTOMATIS!` 
+                                : `Ujian akan berakhir sekarang!`}
+                        </p>
+                        <div class="text-sm text-red-200">
+                            <p>• Jangan buka aplikasi lain</p>
+                            <p>• Jangan pindah tab browser</p>
+                            <p>• Fokus pada ujian saja</p>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(violationWarning);
+                
+                // Auto hide after 5 seconds if not terminated
+                if (remainingViolations > 0) {
+                    violationTimer = setTimeout(() => {
+                        hideViolationWarning();
+                    }, 5000);
+                }
+            }
+        }
+
+        // Hide violation warning
+        function hideViolationWarning() {
+            const violationWarning = document.getElementById('violationWarning');
+            if (violationWarning) {
+                violationWarning.remove();
+            }
+            if (violationTimer) {
+                clearTimeout(violationTimer);
+                violationTimer = null;
+            }
+        }
+
+        // Terminate exam for security violation
+        function terminateExamForViolation() {
+            if (examTimer) {
+                clearInterval(examTimer);
+            }
+            
+            // Mark exam as completed (blocked) to prevent retaking
+            markExamCompleted(currentStudent.key, currentExamSubject.id);
+            
+            // Show termination message
+            showExamTerminationMessage();
+        }
+
+        // Show exam termination message
+        function showExamTerminationMessage() {
+            const terminationOverlay = document.createElement('div');
+            terminationOverlay.className = 'fixed inset-0 bg-red-800 bg-opacity-95 flex items-center justify-center z-50';
+            terminationOverlay.innerHTML = `
+                <div class="text-center text-white p-8 max-w-lg">
+                    <div class="text-8xl mb-6">❌</div>
+                    <h2 class="text-4xl font-bold mb-6">UJIAN DIHENTIKAN!</h2>
+                    <div class="bg-red-900 rounded-lg p-6 mb-6">
+                        <p class="text-xl font-bold mb-4">Alasan: Pelanggaran Keamanan</p>
+                        <p class="text-lg mb-2">Anda telah melanggar aturan ujian sebanyak ${securityViolations} kali</p>
+                        <p class="text-base">• Membuka aplikasi lain</p>
+                        <p class="text-base">• Berpindah tab browser</p>
+                    </div>
+                    <div class="bg-yellow-600 rounded-lg p-4 mb-6">
+                        <p class="text-lg font-bold mb-2">⚠️ PENTING!</p>
+                        <p class="text-sm">Ujian ini sudah TIDAK DAPAT DIULANG dengan akun Google yang sama.</p>
+                        <p class="text-sm">Hubungi guru untuk instruksi lebih lanjut.</p>
+                    </div>
+                    <button onclick="exitExamAfterTermination()" class="bg-white text-red-800 px-8 py-4 rounded-lg hover:bg-gray-100 transition duration-200 font-bold text-lg">
+                        Kembali ke Dashboard
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(terminationOverlay);
+        }
+
+        // Return to fullscreen
+        function returnToFullscreen() {
+            const warning = document.getElementById('fullscreenWarning');
+            if (warning) {
+                warning.remove();
+            }
+            requestFullscreen();
+        }
+
+        // Make functions globally accessible
+        window.returnToFullscreen = returnToFullscreen;
+
+        // Start exam timer
+        function startExamTimer() {
+            timeRemaining = 90 * 60; // Reset to 90 minutes
+            
+            examTimer = setInterval(function() {
+                timeRemaining--;
+                
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                const timeDisplay = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                document.getElementById('timeLeft').textContent = timeDisplay;
+                
+                // Warning when less than 10 minutes
+                if (timeRemaining <= 600) {
+                    document.getElementById('timerOverlay').classList.add('timer-warning');
+                }
+                
+                // Time's up
+                if (timeRemaining <= 0) {
+                    clearInterval(examTimer);
+                    showTimeUpMessage();
+                }
+            }, 1000);
+        }
+
+        // Show time's up message
+        function showTimeUpMessage() {
+            const timeUpOverlay = document.createElement('div');
+            timeUpOverlay.className = 'fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50';
+            timeUpOverlay.innerHTML = `
+                <div class="text-center text-white p-8">
+                    <div class="text-6xl mb-4">⏰</div>
+                    <h2 class="text-2xl font-bold mb-4">WAKTU UJIAN HABIS!</h2>
+                    <p class="text-lg mb-6">Pastikan Anda telah mengirim jawaban di Google Form</p>
+                    <button onclick="exitExam()" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-200">
+                        Keluar dari Ujian
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(timeUpOverlay);
+        }
+
+        // Exit exam function
+        function exitExam() {
+            if (examTimer) {
+                clearInterval(examTimer);
+            }
+            
+            isExamActive = false;
+            
+            // Exit fullscreen mode
+            exitFullscreen();
+            
+            // Disable exam security measures
+            disableExamSecurity();
+            
+            // Show dashboard and hide exam container
+            document.getElementById('examContainer').classList.add('hidden');
+            document.getElementById('dashboardPage').classList.remove('hidden');
+            
+            // Clear iframe
+            document.getElementById('examIframe').src = '';
+            
+            // Restore body scrolling
+            document.body.style.overflow = 'auto';
+            
+            // Remove timer warning class
+            document.getElementById('timerOverlay').classList.remove('timer-warning');
+            
+            // Remove any warning overlays
+            const timeUpOverlay = document.querySelector('.fixed.inset-0.bg-black.bg-opacity-90');
+            if (timeUpOverlay) {
+                timeUpOverlay.remove();
+            }
+            
+            const fullscreenWarning = document.getElementById('fullscreenWarning');
+            if (fullscreenWarning) {
+                fullscreenWarning.remove();
+            }
+            
+            const focusWarning = document.getElementById('focusWarning');
+            if (focusWarning) {
+                focusWarning.remove();
+            }
+            
+            const tabWarning = document.getElementById('tabWarning');
+            if (tabWarning) {
+                tabWarning.remove();
+            }
+        }
+
+        // Exit exam after termination
+        function exitExamAfterTermination() {
+            if (examTimer) {
+                clearInterval(examTimer);
+            }
+            
+            isExamActive = false;
+            securityViolations = 0;
+            
+            // Exit fullscreen mode
+            exitFullscreen();
+            
+            // Disable exam security measures
+            disableExamSecurity();
+            
+            // Show dashboard and hide exam container
+            document.getElementById('examContainer').classList.add('hidden');
+            document.getElementById('dashboardPage').classList.remove('hidden');
+            
+            // Clear iframe
+            document.getElementById('examIframe').src = '';
+            
+            // Restore body scrolling
+            document.body.style.overflow = 'auto';
+            
+            // Remove timer warning class
+            document.getElementById('timerOverlay').classList.remove('timer-warning');
+            
+            // Remove all warning overlays
+            const overlays = [
+                '.fixed.inset-0.bg-red-800.bg-opacity-95',
+                '.fixed.inset-0.bg-red-600.bg-opacity-95',
+                '.fixed.inset-0.bg-black.bg-opacity-90',
+                '#fullscreenWarning',
+                '#focusWarning',
+                '#tabWarning',
+                '#violationWarning'
+            ];
+            
+            overlays.forEach(selector => {
+                const element = document.querySelector(selector) || document.getElementById(selector.replace('#', ''));
+                if (element) {
+                    element.remove();
+                }
+            });
+            
+            // Refresh subjects to show updated status
+            renderSubjects();
+        }
+
+        // Make functions globally accessible
+        window.exitExam = exitExam;
+        window.exitExamAfterTermination = exitExamAfterTermination;
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            if (isExamActive) {
+                const confirmLogout = document.createElement('div');
+                confirmLogout.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50';
+                confirmLogout.innerHTML = `
+                    <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+                        <div class="text-center">
+                            <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-red-600 text-2xl">⚠️</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Konfirmasi Logout</h3>
+                            <p class="text-gray-600 mb-6">Anda sedang dalam ujian. Yakin ingin logout? Timer akan berhenti dan ujian akan berakhir.</p>
+                            
+                            <div class="flex space-x-4">
+                                <button onclick="this.parentElement.parentElement.parentElement.parentElement.remove()" 
+                                        class="flex-1 bg-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-400 transition duration-200">
+                                    Batal
+                                </button>
+                                <button onclick="confirmLogoutAction()" 
+                                        class="flex-1 bg-red-600 text-white py-3 px-4 rounded-lg hover:bg-red-700 transition duration-200">
+                                    Ya, Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(confirmLogout);
+            } else {
+                performLogout();
+            }
+        });
+
+        function confirmLogoutAction() {
+            document.querySelector('.fixed.inset-0.bg-black.bg-opacity-50').remove();
+            performLogout();
+        }
+
+        function performLogout() {
+            if (examTimer) {
+                clearInterval(examTimer);
+            }
+            
+            exitExam();
+            
+            currentStudent = null;
+            
+            document.getElementById('dashboardPage').classList.add('hidden');
+            document.getElementById('loginPage').classList.remove('hidden');
+            
+            // Reset form
+            document.getElementById('loginForm').reset();
+            document.getElementById('studentClass').disabled = true;
+        }
+
+        // Make confirmLogoutAction globally accessible
+        window.confirmLogoutAction = confirmLogoutAction;
+
+        // Prevent accidental page refresh during exam
+        window.addEventListener('beforeunload', function(e) {
+            if (isExamActive) {
+                e.preventDefault();
+                e.returnValue = 'Anda sedang dalam ujian. Yakin ingin meninggalkan halaman?';
+            }
+        });
+
+        // Handle orientation change on mobile
+        window.addEventListener('orientationchange', function() {
+            if (isMobileDevice()) {
+                setTimeout(function() {
+                    // Recalculate viewport height
+                    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+                    
+                    // Re-request fullscreen if exam is active
+                    if (isExamActive) {
+                        requestFullscreen();
+                    }
+                }, 500);
+            }
+        });
+
+        // Set initial viewport height for mobile
+        if (isMobileDevice()) {
+            document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+        }
+
+        // Handle resize events
+        window.addEventListener('resize', function() {
+            if (isMobileDevice()) {
+                document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+            }
+        });
+
+        // Prevent zoom on iOS
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+
+        // Prevent double-tap zoom
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98f8ccbe668bce27',t:'MTc2MDYzMDc0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
