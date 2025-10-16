@@ -173,6 +173,17 @@
      </div>
      <h1 class="text-xl md:text-2xl font-bold text-gray-800">Portal Ujian Siswa</h1>
      <p class="text-gray-600 mt-2 text-sm md:text-base">Daarul Amiin IBS</p>
+    </div><!-- Install App Notification on Login Page -->
+    <div id="loginInstallNotification" class="hidden bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-xl p-4 mb-6 shadow-lg">
+     <div class="text-center">
+      <div class="text-2xl mb-2">
+       📱✨
+      </div>
+      <h4 class="font-bold text-sm md:text-base mb-2">INSTALL APLIKASI PORTAL UJIAN</h4>
+      <p class="text-xs md:text-sm mb-3 opacity-90">Akses lebih mudah dan cepat dari home screen Android!</p>
+      <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2"><button id="loginInstallBtn" class="flex-1 bg-white text-green-600 px-4 py-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition duration-200 text-xs md:text-sm font-medium no-zoom"> 📱 Install Sekarang </button> <button id="loginDismissBtn" class="flex-1 bg-transparent border border-white text-white px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 active:bg-white active:bg-opacity-30 transition duration-200 text-xs md:text-sm no-zoom"> Nanti Saja </button>
+      </div>
+     </div>
     </div>
     <form id="loginForm" class="space-y-4 md:space-y-6">
      <div><label for="studentName" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label> <input type="text" id="studentName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent no-zoom" placeholder="Masukkan nama lengkap" autocomplete="name" inputmode="text">
@@ -212,14 +223,6 @@
       <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 md:p-4 mt-4 mobile-spacing">
        <h4 class="text-blue-800 font-medium text-sm md:text-base mb-2">📅 Jadwal Ujian Hari Ini</h4>
        <div id="examSchedule" class="text-blue-700 text-xs md:text-sm mobile-text-sm"><!-- Schedule will be populated by JavaScript -->
-       </div>
-      </div><!-- Install App Notification -->
-      <div id="installNotification" class="hidden bg-blue-50 border border-blue-200 rounded-lg p-3 md:p-4 mt-4 mobile-spacing">
-       <h4 class="text-blue-800 font-medium text-sm md:text-base mb-2">📱 INSTALL APLIKASI</h4>
-       <div class="text-blue-700 text-xs md:text-sm mobile-text-sm">
-        <p class="mb-1 md:mb-2">✨ Portal Ujian bisa diinstall sebagai aplikasi!</p>
-        <p class="mb-1 md:mb-2">📲 Akses lebih cepat dari home screen Android</p>
-        <p class="mb-1 md:mb-2">🚀 Pengalaman seperti aplikasi native</p><button id="installNotificationBtn" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 active:bg-blue-800 transition duration-200 text-xs md:text-sm no-zoom"> 📱 Install Sekarang </button> <button id="dismissInstallBtn" class="mt-2 ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 active:bg-gray-500 transition duration-200 text-xs md:text-sm no-zoom"> Nanti Saja </button>
        </div>
       </div><!-- Simple Info -->
       <div class="bg-green-50 border border-green-200 rounded-lg p-3 md:p-4 mt-4 mobile-spacing">
@@ -309,7 +312,7 @@
         const formUrlsByClass = {
             // SMP Classes
             'VII': {
-                'ipa': 'https://forms.gle/B2iQyMA4fQmCpCaZ7',
+                'ipa': 'https://forms.gle/ipa-kelas7',
                 'ips': 'https://forms.gle/ips-kelas7',
                 'matematika': 'https://forms.gle/matematika-kelas7',
                 'bahasa-indonesia': 'https://forms.gle/bahasa-indonesia-kelas7',
@@ -369,7 +372,7 @@
                 'biologi': 'https://forms.gle/biologi-kelas10',
                 'matematika': 'https://forms.gle/matematika-kelas10',
                 'ips': 'https://forms.gle/ips-kelas10',
-                'informatika': 'https://forms.gle/informatika-kelas10',
+                'informatika': 'https://forms.gle/3NFe7LtzSTmm7qMY9',
                 'pjok': 'https://forms.gle/pjok-kelas10',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas10'
             },
@@ -1344,24 +1347,44 @@
         // Show install options
         function showInstallOptions() {
             if (!isAppInstalled() && !isInstallPromptShown) {
-                // Show install button in header
-                document.getElementById('installBtn').classList.remove('hidden');
+                // Show install button in header (only on dashboard)
+                const installBtn = document.getElementById('installBtn');
+                if (installBtn) {
+                    installBtn.classList.remove('hidden');
+                }
                 
-                // Show install notification after 3 seconds
+                // Show install notification on login page after 2 seconds
                 setTimeout(() => {
                     if (!isInstallPromptShown && !isAppInstalled()) {
-                        document.getElementById('installNotification').classList.remove('hidden');
-                        isInstallPromptShown = true;
+                        const loginPage = document.getElementById('loginPage');
+                        const dashboardPage = document.getElementById('dashboardPage');
+                        
+                        // Only show on login page
+                        if (!loginPage.classList.contains('hidden')) {
+                            document.getElementById('loginInstallNotification').classList.remove('hidden');
+                            isInstallPromptShown = true;
+                        }
                     }
-                }, 3000);
+                }, 2000);
             }
         }
 
         // Hide install options
         function hideInstallOptions() {
-            document.getElementById('installBtn').classList.add('hidden');
-            document.getElementById('installNotification').classList.add('hidden');
-            document.getElementById('installModal').classList.add('hidden');
+            const installBtn = document.getElementById('installBtn');
+            if (installBtn) {
+                installBtn.classList.add('hidden');
+            }
+            
+            const loginInstallNotification = document.getElementById('loginInstallNotification');
+            if (loginInstallNotification) {
+                loginInstallNotification.classList.add('hidden');
+            }
+            
+            const installModal = document.getElementById('installModal');
+            if (installModal) {
+                installModal.classList.add('hidden');
+            }
         }
 
         // Show install success message
@@ -1378,7 +1401,7 @@
 
         // Install button click handlers
         document.getElementById('installBtn').addEventListener('click', showInstallModal);
-        document.getElementById('installNotificationBtn').addEventListener('click', showInstallModal);
+        document.getElementById('loginInstallBtn').addEventListener('click', showInstallModal);
 
         // Show install modal
         function showInstallModal() {
@@ -1390,9 +1413,9 @@
             document.getElementById('installModal').classList.add('hidden');
         });
 
-        // Dismiss install notification
-        document.getElementById('dismissInstallBtn').addEventListener('click', function() {
-            document.getElementById('installNotification').classList.add('hidden');
+        // Dismiss install notification on login page
+        document.getElementById('loginDismissBtn').addEventListener('click', function() {
+            document.getElementById('loginInstallNotification').classList.add('hidden');
             isInstallPromptShown = true; // Don't show again this session
         });
 
@@ -1473,15 +1496,21 @@
                 // Show install options for manual installation
                 setTimeout(() => {
                     if (!isInstallPromptShown && !isAppInstalled()) {
-                        document.getElementById('installBtn').classList.remove('hidden');
+                        const installBtn = document.getElementById('installBtn');
+                        if (installBtn) {
+                            installBtn.classList.remove('hidden');
+                        }
                         
-                        // Show notification after 5 seconds
+                        // Show notification on login page after 3 seconds
                         setTimeout(() => {
                             if (!isInstallPromptShown && !isAppInstalled()) {
-                                document.getElementById('installNotification').classList.remove('hidden');
-                                isInstallPromptShown = true;
+                                const loginPage = document.getElementById('loginPage');
+                                if (!loginPage.classList.contains('hidden')) {
+                                    document.getElementById('loginInstallNotification').classList.remove('hidden');
+                                    isInstallPromptShown = true;
+                                }
                             }
-                        }, 5000);
+                        }, 3000);
                     }
                 }, 2000);
             }
@@ -1537,5 +1566,5 @@
             lastTouchEnd = now;
         }, false);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98f8e49336703e49',t:'MTc2MDYzMTcyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98f8f3cdc6659ccb',t:'MTc2MDYzMjM0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
