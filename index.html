@@ -160,6 +160,69 @@
         .no-zoom {
             touch-action: manipulation;
         }
+        
+        /* Mobile security styles */
+        .exam-locked {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999 !important;
+            overflow: hidden !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            -webkit-touch-callout: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+            overscroll-behavior: none !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        
+        /* Disable text selection during exam */
+        .exam-active * {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            -webkit-touch-callout: none !important;
+        }
+        
+        /* Allow text selection only in Google Form iframe */
+        .exam-active iframe {
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+            -webkit-touch-callout: default !important;
+        }
+        
+        /* Block edge swipe gestures */
+        .exam-active {
+            overscroll-behavior-x: none !important;
+            overscroll-behavior-y: none !important;
+            -webkit-overscroll-behavior: none !important;
+            -ms-overscroll-behavior: none !important;
+            overscroll-behavior: none !important;
+        }
+        
+        /* Prevent pull-to-refresh */
+        .exam-active body {
+            overscroll-behavior: none !important;
+            -webkit-overscroll-behavior: none !important;
+            -ms-overscroll-behavior: none !important;
+        }
+        
+        /* Hide scrollbars during exam */
+        .exam-active::-webkit-scrollbar {
+            display: none !important;
+        }
+        
+        .exam-active {
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
+        }
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
@@ -320,7 +383,7 @@
                 'bahasa-arab': 'https://forms.gle/bahasa-arab-kelas7',
                 'pjok': 'https://forms.gle/pjok-kelas7',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas7',
-                'informatika': 'https://forms.gle/3NFe7LtzSTmm7qMY9',
+                'informatika': 'https://forms.gle/tKTEksQruUbdovpZ9',
                 'nahwu-sharaf': 'https://forms.gle/nahwu-sharaf-kelas7',
                 'aqidah': 'https://forms.gle/aqidah-kelas7',
                 'fiqih': 'https://forms.gle/fiqih-kelas7',
@@ -335,7 +398,7 @@
                 'bahasa-arab': 'https://forms.gle/bahasa-arab-kelas8',
                 'pjok': 'https://forms.gle/pjok-kelas8',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas8',
-                'informatika': 'https://forms.gle/informatika-kelas8',
+                'informatika': 'https://forms.gle/tKTEksQruUbdovpZ9',
                 'nahwu-sharaf': 'https://forms.gle/nahwu-sharaf-kelas8',
                 'aqidah': 'https://forms.gle/aqidah-kelas8',
                 'fiqih': 'https://forms.gle/fiqih-kelas8',
@@ -350,7 +413,7 @@
                 'bahasa-arab': 'https://forms.gle/bahasa-arab-kelas9',
                 'pjok': 'https://forms.gle/pjok-kelas9',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas9',
-                'informatika': 'https://forms.gle/informatika-kelas9',
+                'informatika': 'https://forms.gle/tKTEksQruUbdovpZ9',
                 'nahwu-sharaf': 'https://forms.gle/nahwu-sharaf-kelas9',
                 'aqidah': 'https://forms.gle/aqidah-kelas9',
                 'fiqih': 'https://forms.gle/fiqih-kelas9',
@@ -372,7 +435,7 @@
                 'biologi': 'https://forms.gle/biologi-kelas10',
                 'matematika': 'https://forms.gle/matematika-kelas10',
                 'ips': 'https://forms.gle/ips-kelas10',
-                'informatika': 'https://forms.gle/3NFe7LtzSTmm7qMY9',
+                'informatika': 'https://forms.gle/tKTEksQruUbdovpZ9',
                 'pjok': 'https://forms.gle/pjok-kelas10',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas10'
             },
@@ -391,7 +454,7 @@
                 'biologi': 'https://forms.gle/biologi-kelas11',
                 'matematika': 'https://forms.gle/matematika-kelas11',
                 'ips': 'https://forms.gle/ips-kelas11',
-                'informatika': 'https://forms.gle/informatika-kelas11',
+                'informatika': 'https://forms.gle/tKTEksQruUbdovpZ9',
                 'pjok': 'https://forms.gle/pjok-kelas11',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas11'
             },
@@ -410,7 +473,7 @@
                 'biologi': 'https://forms.gle/biologi-kelas12',
                 'matematika': 'https://forms.gle/matematika-kelas12',
                 'ips': 'https://forms.gle/ips-kelas12',
-                'informatika': 'https://forms.gle/informatika-kelas12',
+                'informatika': 'https://forms.gle/tKTEksQruUbdovpZ9',
                 'pjok': 'https://forms.gle/pjok-kelas12',
                 'bimbingan-konseling': 'https://forms.gle/bk-kelas12'
             }
@@ -456,7 +519,7 @@
         // Jadwal ujian hari ini
         const todayExamSchedule = {
             SMP: ['informatika', 'matematika', 'bahasa-indonesia'],
-            SMA: ['nahwu-sharaf', 'informatika', 'fisika']
+            SMA: ['informatika', 'matematika', 'fisika']
         };
 
         let currentStudent = null;
@@ -719,6 +782,11 @@
             // Prevent scrolling on body
             document.body.style.overflow = 'hidden';
             
+            // Add mobile security classes
+            document.body.classList.add('exam-active');
+            document.documentElement.classList.add('exam-active');
+            document.getElementById('examContainer').classList.add('exam-locked');
+            
             // Enable exam security measures
             enableExamSecurity();
         }
@@ -792,6 +860,24 @@
             
             // Monitor visibility changes (tab switching)
             document.addEventListener('visibilitychange', handleVisibilityChange);
+            
+            // MOBILE SECURITY: Block all hardware buttons
+            enableMobileHardwareBlock();
+            
+            // MOBILE SECURITY: Prevent navigation gestures
+            enableNavigationBlock();
+            
+            // MOBILE SECURITY: Lock screen orientation
+            lockScreenOrientation();
+            
+            // MOBILE SECURITY: Disable pull-to-refresh
+            disablePullToRefresh();
+            
+            // MOBILE SECURITY: Block Android back button
+            blockAndroidBackButton();
+            
+            // MOBILE SECURITY: Prevent app switching
+            preventAppSwitching();
         }
 
         // Disable exam security measures
@@ -805,6 +891,324 @@
             window.removeEventListener('blur', handleWindowBlur);
             window.removeEventListener('focus', handleWindowFocus);
             document.removeEventListener('visibilitychange', handleVisibilityChange);
+            
+            // MOBILE SECURITY: Restore mobile functionality
+            disableMobileHardwareBlock();
+            disableNavigationBlock();
+            unlockScreenOrientation();
+            enablePullToRefresh();
+            unblockAndroidBackButton();
+            allowAppSwitching();
+        }
+
+        // ===== MOBILE SECURITY FUNCTIONS =====
+        
+        // Block all mobile hardware buttons during exam
+        function enableMobileHardwareBlock() {
+            if (!isMobileDevice()) return;
+            
+            // Block volume buttons
+            document.addEventListener('volumeupbutton', preventDefaultAction, false);
+            document.addEventListener('volumedownbutton', preventDefaultAction, false);
+            
+            // Block power button (if possible)
+            document.addEventListener('pause', handleAppPause, false);
+            document.addEventListener('resume', handleAppResume, false);
+            
+            // Block menu button
+            document.addEventListener('menubutton', preventDefaultAction, false);
+            
+            // Block search button
+            document.addEventListener('searchbutton', preventDefaultAction, false);
+            
+            // Block camera button
+            document.addEventListener('startcallbutton', preventDefaultAction, false);
+            document.addEventListener('endcallbutton', preventDefaultAction, false);
+        }
+        
+        function disableMobileHardwareBlock() {
+            if (!isMobileDevice()) return;
+            
+            document.removeEventListener('volumeupbutton', preventDefaultAction, false);
+            document.removeEventListener('volumedownbutton', preventDefaultAction, false);
+            document.removeEventListener('pause', handleAppPause, false);
+            document.removeEventListener('resume', handleAppResume, false);
+            document.removeEventListener('menubutton', preventDefaultAction, false);
+            document.removeEventListener('searchbutton', preventDefaultAction, false);
+            document.removeEventListener('startcallbutton', preventDefaultAction, false);
+            document.removeEventListener('endcallbutton', preventDefaultAction, false);
+        }
+        
+        // Handle app pause (when user tries to switch apps)
+        function handleAppPause() {
+            if (isExamActive) {
+                securityViolations++;
+                showAppSwitchWarning();
+                
+                if (securityViolations >= MAX_VIOLATIONS) {
+                    terminateExamForViolation();
+                } else {
+                    showViolationWarning();
+                }
+            }
+        }
+        
+        // Handle app resume
+        function handleAppResume() {
+            if (isExamActive && securityViolations < MAX_VIOLATIONS) {
+                hideAppSwitchWarning();
+                hideViolationWarning();
+                
+                // Force back to fullscreen
+                requestFullscreen();
+            }
+        }
+        
+        // Block navigation gestures
+        function enableNavigationBlock() {
+            if (!isMobileDevice()) return;
+            
+            // Prevent swipe gestures
+            document.addEventListener('touchstart', blockNavigationGestures, { passive: false });
+            document.addEventListener('touchmove', blockNavigationGestures, { passive: false });
+            document.addEventListener('touchend', blockNavigationGestures, { passive: false });
+            
+            // Prevent mouse events that could trigger navigation
+            document.addEventListener('mousedown', blockNavigationGestures, { passive: false });
+            document.addEventListener('mousemove', blockNavigationGestures, { passive: false });
+            document.addEventListener('mouseup', blockNavigationGestures, { passive: false });
+        }
+        
+        function disableNavigationBlock() {
+            if (!isMobileDevice()) return;
+            
+            document.removeEventListener('touchstart', blockNavigationGestures, { passive: false });
+            document.removeEventListener('touchmove', blockNavigationGestures, { passive: false });
+            document.removeEventListener('touchend', blockNavigationGestures, { passive: false });
+            document.removeEventListener('mousedown', blockNavigationGestures, { passive: false });
+            document.removeEventListener('mousemove', blockNavigationGestures, { passive: false });
+            document.removeEventListener('mouseup', blockNavigationGestures, { passive: false });
+        }
+        
+        // Block navigation gestures (swipe from edges)
+        function blockNavigationGestures(e) {
+            if (!isExamActive) return;
+            
+            const touch = e.touches ? e.touches[0] : e;
+            const x = touch.clientX;
+            const y = touch.clientY;
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            
+            // Block swipe from left edge (back gesture)
+            if (x < 50) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+            
+            // Block swipe from right edge (forward gesture)
+            if (x > screenWidth - 50) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+            
+            // Block swipe from top edge (pull down notifications)
+            if (y < 50) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+            
+            // Block swipe from bottom edge (home gesture)
+            if (y > screenHeight - 100) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        }
+        
+        // Lock screen orientation
+        function lockScreenOrientation() {
+            if (!isMobileDevice()) return;
+            
+            try {
+                // Try to lock to current orientation
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('portrait-primary').catch(() => {
+                        // Fallback: try to lock to any portrait
+                        screen.orientation.lock('portrait').catch(() => {
+                            console.log('Screen orientation lock not supported');
+                        });
+                    });
+                }
+                // Legacy method
+                else if (screen.lockOrientation) {
+                    screen.lockOrientation('portrait');
+                }
+                // WebKit method
+                else if (screen.webkitLockOrientation) {
+                    screen.webkitLockOrientation('portrait');
+                }
+                // Mozilla method
+                else if (screen.mozLockOrientation) {
+                    screen.mozLockOrientation('portrait');
+                }
+            } catch (error) {
+                console.log('Orientation lock failed:', error);
+            }
+        }
+        
+        function unlockScreenOrientation() {
+            if (!isMobileDevice()) return;
+            
+            try {
+                if (screen.orientation && screen.orientation.unlock) {
+                    screen.orientation.unlock();
+                }
+                else if (screen.unlockOrientation) {
+                    screen.unlockOrientation();
+                }
+                else if (screen.webkitUnlockOrientation) {
+                    screen.webkitUnlockOrientation();
+                }
+                else if (screen.mozUnlockOrientation) {
+                    screen.mozUnlockOrientation();
+                }
+            } catch (error) {
+                console.log('Orientation unlock failed:', error);
+            }
+        }
+        
+        // Disable pull-to-refresh
+        function disablePullToRefresh() {
+            if (!isMobileDevice()) return;
+            
+            document.body.style.overscrollBehavior = 'none';
+            document.documentElement.style.overscrollBehavior = 'none';
+            
+            // Additional prevention
+            let startY = 0;
+            
+            document.addEventListener('touchstart', function(e) {
+                if (!isExamActive) return;
+                startY = e.touches[0].clientY;
+            }, { passive: false });
+            
+            document.addEventListener('touchmove', function(e) {
+                if (!isExamActive) return;
+                
+                const currentY = e.touches[0].clientY;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                
+                // Prevent pull-to-refresh when at top of page
+                if (scrollTop === 0 && currentY > startY) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        }
+        
+        function enablePullToRefresh() {
+            if (!isMobileDevice()) return;
+            
+            document.body.style.overscrollBehavior = 'auto';
+            document.documentElement.style.overscrollBehavior = 'auto';
+        }
+        
+        // Block Android back button
+        function blockAndroidBackButton() {
+            if (!isMobileDevice()) return;
+            
+            // Override browser back button
+            history.pushState(null, null, location.href);
+            window.addEventListener('popstate', handleBackButton);
+            
+            // Cordova/PhoneGap back button (if available)
+            document.addEventListener('backbutton', handleBackButton, false);
+        }
+        
+        function unblockAndroidBackButton() {
+            if (!isMobileDevice()) return;
+            
+            window.removeEventListener('popstate', handleBackButton);
+            document.removeEventListener('backbutton', handleBackButton, false);
+        }
+        
+        // Handle back button press
+        function handleBackButton(e) {
+            if (isExamActive) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Push state again to prevent navigation
+                history.pushState(null, null, location.href);
+                
+                // Show warning
+                showBackButtonWarning();
+                
+                // Count as violation
+                securityViolations++;
+                if (securityViolations >= MAX_VIOLATIONS) {
+                    terminateExamForViolation();
+                } else {
+                    showViolationWarning();
+                }
+                
+                return false;
+            }
+        }
+        
+        // Prevent app switching
+        function preventAppSwitching() {
+            if (!isMobileDevice()) return;
+            
+            // Monitor page visibility more aggressively
+            let visibilityTimer;
+            
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden && isExamActive) {
+                    // User switched apps or minimized
+                    securityViolations++;
+                    showAppSwitchWarning();
+                    
+                    if (securityViolations >= MAX_VIOLATIONS) {
+                        terminateExamForViolation();
+                    } else {
+                        showViolationWarning();
+                    }
+                    
+                    // Try to bring app back to foreground
+                    visibilityTimer = setTimeout(() => {
+                        if (document.hidden && isExamActive) {
+                            // Force focus back
+                            window.focus();
+                            requestFullscreen();
+                        }
+                    }, 1000);
+                } else if (!document.hidden && isExamActive) {
+                    clearTimeout(visibilityTimer);
+                    hideAppSwitchWarning();
+                    if (securityViolations < MAX_VIOLATIONS) {
+                        hideViolationWarning();
+                    }
+                }
+            });
+            
+            // Monitor window focus more aggressively
+            window.addEventListener('blur', function() {
+                if (isExamActive) {
+                    setTimeout(() => {
+                        window.focus();
+                        requestFullscreen();
+                    }, 100);
+                }
+            });
+        }
+        
+        function allowAppSwitching() {
+            // This function exists for consistency but doesn't need to do anything
+            // as the event listeners are already removed in disableExamSecurity
         }
 
         // Prevent default actions
@@ -1002,6 +1406,45 @@
                 document.body.appendChild(tabWarning);
             }
         }
+        
+        // Show app switch warning
+        function showAppSwitchWarning() {
+            let appWarning = document.getElementById('appWarning');
+            if (!appWarning) {
+                appWarning = document.createElement('div');
+                appWarning.id = 'appWarning';
+                appWarning.className = 'fixed top-0 left-0 right-0 bg-red-700 text-white text-center py-3 z-40 font-bold animate-pulse';
+                appWarning.innerHTML = '🚫 PERINGATAN: Jangan buka aplikasi lain! Fokus pada ujian!';
+                document.body.appendChild(appWarning);
+            }
+        }
+        
+        // Hide app switch warning
+        function hideAppSwitchWarning() {
+            const appWarning = document.getElementById('appWarning');
+            if (appWarning) {
+                appWarning.remove();
+            }
+        }
+        
+        // Show back button warning
+        function showBackButtonWarning() {
+            let backWarning = document.getElementById('backWarning');
+            if (!backWarning) {
+                backWarning = document.createElement('div');
+                backWarning.id = 'backWarning';
+                backWarning.className = 'fixed top-0 left-0 right-0 bg-orange-600 text-white text-center py-3 z-40 font-bold animate-pulse';
+                backWarning.innerHTML = '⚠️ PERINGATAN: Tombol BACK diblokir selama ujian!';
+                document.body.appendChild(backWarning);
+                
+                // Auto hide after 3 seconds
+                setTimeout(() => {
+                    if (backWarning) {
+                        backWarning.remove();
+                    }
+                }, 3000);
+            }
+        }
 
         // Hide tab switch warning
         function hideTabSwitchWarning() {
@@ -1174,6 +1617,11 @@
             // Disable exam security measures
             disableExamSecurity();
             
+            // Remove mobile security classes
+            document.body.classList.remove('exam-active');
+            document.documentElement.classList.remove('exam-active');
+            document.getElementById('examContainer').classList.remove('exam-locked');
+            
             // Show dashboard and hide exam container
             document.getElementById('examContainer').classList.add('hidden');
             document.getElementById('dashboardPage').classList.remove('hidden');
@@ -1207,6 +1655,16 @@
             if (tabWarning) {
                 tabWarning.remove();
             }
+            
+            const appWarning = document.getElementById('appWarning');
+            if (appWarning) {
+                appWarning.remove();
+            }
+            
+            const backWarning = document.getElementById('backWarning');
+            if (backWarning) {
+                backWarning.remove();
+            }
         }
 
         // Exit exam after termination
@@ -1223,6 +1681,11 @@
             
             // Disable exam security measures
             disableExamSecurity();
+            
+            // Remove mobile security classes
+            document.body.classList.remove('exam-active');
+            document.documentElement.classList.remove('exam-active');
+            document.getElementById('examContainer').classList.remove('exam-locked');
             
             // Show dashboard and hide exam container
             document.getElementById('examContainer').classList.add('hidden');
@@ -1245,6 +1708,8 @@
                 '#fullscreenWarning',
                 '#focusWarning',
                 '#tabWarning',
+                '#appWarning',
+                '#backWarning',
                 '#violationWarning'
             ];
             
@@ -1566,5 +2031,5 @@
             lastTouchEnd = now;
         }, false);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98f8f3cdc6659ccb',t:'MTc2MDYzMjM0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98fc2268b383fd29',t:'MTc2MDY2NTcxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
